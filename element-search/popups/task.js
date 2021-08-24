@@ -1,17 +1,19 @@
 let modalMain = document.getElementById('modal_main');
 let modalSuccess = document.getElementById('modal_success');
-let closeButtons = document.querySelector('.modal__close');
+let closeButtons = document.querySelectorAll('.modal__close');
 let replaceButtons = document.querySelector('.show-success');
 
 function activeModalMain() {
 	modalMain.classList.add('modal_active');
 };
-setTimeout(activeModalMain, 3000);
+setTimeout(activeModalMain, 1000);
 
-function closeModal() {
-	modalMain.classList.remove('modal_active');
+for (let closeButton of closeButtons) {
+	closeButton.onclick = function () {
+		modalMain.classList.remove('modal_active');
+		modalSuccess.classList.remove('modal_active');
+	}
 }
-closeButtons.addEventListener("click", closeModal);
 
 function replace() {
 	modalMain.classList.remove('modal_active');
