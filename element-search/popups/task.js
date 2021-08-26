@@ -1,7 +1,7 @@
-let modalMain = document.getElementById('modal_main');
-let modalSuccess = document.getElementById('modal_success');
-let closeButtons = document.querySelectorAll('.modal__close');
-let replaceButtons = document.querySelector('.show-success');
+const modalMain = document.getElementById('modal_main');
+const modalSuccess = document.getElementById('modal_success');
+const closeButtons = document.querySelectorAll('.modal__close');
+const replaceButtons = document.querySelector('.show-success');
 
 function activeModalMain() {
 	modalMain.classList.add('modal_active');
@@ -17,6 +17,6 @@ for (let closeButton of closeButtons) {
 
 function replace() {
 	modalMain.classList.remove('modal_active');
-	modal_success.classList.add('modal_active');
+	modalSuccess.classList.add('modal_active');
 }
 replaceButtons.addEventListener("click", replace);
