@@ -1,9 +1,10 @@
 let cookieButton = document.getElementById('cookie');
-let counterClicker = document.getElementById('clicker__counter').innerHTML;
+let counterClicker = document.getElementById('clicker__counter');
+let timeSpeed = document.getElementById("count__time");
+let lastClick = new Date();
 
 function clickCounterPlus() {
-	counterClicker = Number(counterClicker) + 1;
-	document.getElementById('clicker__counter').innerHTML = counterClicker;
+	Number(++counterClicker.textContent);
 }
 
 function cookieSize() {
@@ -14,16 +15,18 @@ function cookieSize() {
 	}
 }
 
-cookieButton.addEventListener('click', clickCounterPlus);
-cookieButton.addEventListener('click', cookieSize);
-cookieButton.addEventListener('click', speedClick);
-
-let lastClick = new Date();
-
 function speedClick() {
 	let newClick = new Date();
 	let timeClick = (newClick.getTime() - lastClick.getTime()) / 1000;
 	lastClick = newClick;
 	let countTime = (1 / timeClick).toFixed(2);
-	document.getElementById("count__time").innerHTML = countTime;
+	timeSpeed.textContent = countTime;
 }
+
+function allFunctionCookie() {
+	clickCounterPlus();
+	cookieSize();
+	speedClick();
+}
+
+cookieButton.addEventListener('click', allFunctionCookie);
