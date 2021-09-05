@@ -1,23 +1,18 @@
-const menuLinks = document.querySelectorAll('a[href=""]');
-const subMenuActives = document.querySelectorAll('.menu_sub');
+const menuLinks = document.querySelectorAll('a[href=""]'); //коллекция ссылок
 
-for (let i = 0; i < menuLinks.length; i++) {
-	menuLinks[i].addEventListener("click", openEvent);
+for (menuLink of menuLinks) { //событийный слушатель через цикл на ссылку
+	menuLink.addEventListener("click", openCloseEvent);
 }
 
-function removeClass() {
-	for (subMenuActive of subMenuActives) {
-		if (this.subMenuActive.classList.contains('menu_active')) {
-			subMenuActive.classList.remove('menu_active');
-		} else {
-			break;
-		}
+function openCloseEvent() {
+	if (this.nextElementSibling.classList.contains('menu_active')) { //если данное меню открыто
+		this.nextElementSibling.classList.remove('menu_active'); //закрываем меню
+		return false; //выходим из функции
 	}
-}
-
-function openEvent(e) {
-	removeClass();
-	e.preventDefault();
-	this.nextElementSibling.classList.add('menu_active');
+	const subMenuActive = document.querySelector('.menu_active'); //первое попавшееся открытое меню
+	if (subMenuActive) { //если такое меню есть
+		subMenuActive.classList.remove('menu_active'); //закрываем его
+	}
+	this.nextElementSibling.classList.add('menu_active'); //открываем тот, на который кликали
 }
 
