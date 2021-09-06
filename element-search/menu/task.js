@@ -4,7 +4,8 @@ for (menuLink of menuLinks) { //событийный слушатель чере
 	menuLink.addEventListener("click", openCloseEvent);
 }
 
-function openCloseEvent() {
+function openCloseEvent(e) {
+	e.preventDefault(); //отменяем стандартное действие (открытие ссылки)
 	if (this.nextElementSibling.classList.contains('menu_active')) { //если данное меню открыто
 		this.nextElementSibling.classList.remove('menu_active'); //закрываем меню
 		return false; //выходим из функции
