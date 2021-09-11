@@ -17,6 +17,18 @@ class Game {
   }
 
   registerEvents() {
+    document.addEventListener('keypress', checkSymbol);
+    function checkSymbol(e) {
+      const correctSymbol = document.querySelector('.symbol');
+      console.log(e.key, e.code);
+      if (e.key == correctSymbol.textContent) {
+        console.log('ПОПАЛ');
+        this.success();
+      } else {
+        console.log('НЕ ПОПАЛ');
+        this.fail();
+      }
+    }
     /*
       TODO:
       Написать обработчик события, который откликается
@@ -56,18 +68,18 @@ class Game {
 
   getWord() {
     const words = [
-        'bob',
-        'awesome',
-        'netology',
-        'hello',
-        'kitty',
-        'rock',
-        'youtube',
-        'popcorn',
-        'cinema',
-        'love',
-        'javascript'
-      ],
+      'bob',
+      'awesome',
+      'netology',
+      'hello',
+      'kitty',
+      'rock',
+      'youtube',
+      'popcorn',
+      'cinema',
+      'love',
+      'javascript'
+    ],
       index = Math.floor(Math.random() * words.length);
 
     return words[index];
@@ -77,7 +89,7 @@ class Game {
     const html = [...word]
       .map(
         (s, i) =>
-          `<span class="symbol ${i === 0 ? 'symbol_current': ''}">${s}</span>`
+          `<span class="symbol ${i === 0 ? 'symbol_current' : ''}">${s}</span>`
       )
       .join('');
     this.wordElement.innerHTML = html;
