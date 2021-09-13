@@ -17,18 +17,13 @@ class Game {
   }
 
   registerEvents() {
-    document.addEventListener('keypress', checkSymbol);
-    function checkSymbol(e) {
-      const correctSymbol = document.querySelector('.symbol');
-      console.log(e.key, e.code);
-      if (e.key == correctSymbol.textContent) {
-        console.log('ПОПАЛ');
+    document.addEventListener('keydown', (e) => {
+      if (e.key === this.currentSymbol.textContent) {
         this.success();
       } else {
-        console.log('НЕ ПОПАЛ');
         this.fail();
       }
-    }
+    })
     /*
       TODO:
       Написать обработчик события, который откликается
