@@ -4,26 +4,31 @@ let textColors = (document.querySelector('.book__control_color')).querySelectorA
 let bgColors = (document.querySelector('.book__control_background')).querySelectorAll('.color');
 let bookContent = document.querySelector('book__content');
 
-function deleteClass() {
+function deleteClassSize() {
 	let activeButton = document.querySelector('.font-size_active');
 	activeButton.classList.remove('font-size_active');
+}
+
+function deleteClassColor() {
+	let activeBlock = document.querySelector('.color_active');
+	activeBlock.classList.remove('color_active');
 }
 
 for (let sizeButton of sizeButtons) {
 	sizeButton.addEventListener('click', function (e) {
 		e.preventDefault();
 		if (sizeButton.getAttribute('data-size') == 'small') {
-			deleteClass();
+			deleteClassSize();
 			sizeButton.classList.add('font-size_active');
 			book.classList.add('book_fs-small');
 			book.classList.remove('font-size_big');
 		} else if (sizeButton.getAttribute('data-size') == 'big') {
-			deleteClass();
+			deleteClassSize();
 			sizeButton.classList.add('font-size_active');
 			book.classList.remove('book_fs-small');
 			book.classList.add('font-size_big');
 		} else {
-			deleteClass();
+			deleteClassSize();
 			sizeButton.classList.add('font-size_active');
 			book.classList.remove('book_fs-small');
 			book.classList.remove('font-size_big');
@@ -31,52 +36,52 @@ for (let sizeButton of sizeButtons) {
 	});
 }
 
-for (let color of colors) {
-	color.addEventListener('click', function (e) {
+for (let textColor of textColors) {
+	textColor.addEventListener('click', function (e) {
 		e.preventDefault();
-		let attributeText = color.getAttribute("data-text-color");
-		if (attributeText) {
-			for (let item of colors) {
-				if (item.getAttribute("data-text-color"));
-				item.classList.remove("color_active");
-			}
-			color.classList.add("color_active");
-			if (attribute == 'black') {
-				bookContent.classList.add("book_color-black");
-				bookContent.classList.remove("book_color-gray");
-				bookContent.classList.remove("book_color-whitesmoke");
-			} else if (attribute == 'gray') {
-				bookContent.classList.remove("book_color-black");
-				bookContent.classList.add("book_color-gray");
-				bookContent.classList.remove("book_color-whitesmoke");
-			} else {
-				bookContent.classList.remove("book_color-black");
-				bookContent.classList.remove("book_color-gray");
-				bookContent.classList.add("book_color-whitesmoke");
-			}
+		if (textColor.getAttribute('data-text-color') == 'black') {
+			deleteClassColor();
+			textColor.classList.add('color_active');
+			bookContent.classList.add("text_color_black");
+			bookContent.classList.remove("text_color_gray");
+			bookContent.classList.remove("text_color_whitesmoke");
+		} else if (textColor.getAttribute('data-text-color') == 'gray') {
+			deleteClassColor();
+			textColor.classList.add('color_active');
+			bookContent.classList.remove("text_color_black");
+			bookContent.classList.add("text_color_gray");
+			bookContent.classList.remove("text_color_whitesmoke");
 		} else {
-			let attributeBg = color.getAttribute("data-bg-color");
-			if (attributeBg) {
-				for (let item of colors) {
-					if (item.getAttribute("data-bg-color"));
-					item.classList.remove("color_active");
-				}
-				color.classList.add("color_active");
-				if (attribute == 'black') {
-					bookContent.classList.add("bg_color_black");
-					bookContent.classList.remove("bg_color_gray");
-					bookContent.classList.remove("bg_color_white");
-				} else if (attribute == 'gray') {
-					bookContent.classList.remove("bg_color_black");
-					bookContent.classList.add("bg_color_gray");
-					bookContent.classList.remove("bg_color_white");
-				} else {
-					bookContent.classList.remove("bg_color_black");
-					bookContent.classList.remove("bg_color_gray");
-					bookContent.classList.add("bg_color_white");
-				}
+			deleteClassColor();
+			textColor.classList.add('color_active');
+			bookContent.classList.remove("text_color_black");
+			bookContent.classList.remove("text_color_gray");
+			bookContent.classList.add("text_color_whitesmoke");
+		}
+	});
+}
 
-			}
+for (let bgColor of bgColors) {
+	bgColor.addEventListener('click', function (e) {
+		e.preventDefault();
+		if (bgColor.getAttribute('data-bg-color') == 'black') {
+			deleteClassColor();
+			bgColor.classList.add('color_active');
+			bookContent.classList.add("bg_color_black");
+			bookContent.classList.remove("bg_color_gray");
+			bookContent.classList.remove("bg_color_white");
+		} else if (bgColor.getAttribute('data-bg-color') == 'gray') {
+			deleteClassColor();
+			bgColor.classList.add('color_active');
+			bookContent.classList.remove("bg_color_black");
+			bookContent.classList.add("bg_color_gray");
+			bookContent.classList.remove("bg_color_white");
+		} else {
+			deleteClassColor();
+			bgColor.classList.add('color_active');
+			bookContent.classList.remove("bg_color_black");
+			bookContent.classList.remove("bg_color_gray");
+			bookContent.classList.add("bg_color_white");
 		}
 	});
 }
