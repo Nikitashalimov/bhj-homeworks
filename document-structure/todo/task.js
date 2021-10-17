@@ -1,7 +1,6 @@
 const input = document.querySelector('.tasks__input');
 const button = document.querySelector('.tasks__add');
 const taskList = document.querySelector('.tasks__list');
-const removeTasks = document.getElementsByClassName('task__remove');
 
 button.addEventListener('click', (e) => {
 	e.preventDefault();
@@ -21,11 +20,10 @@ function addDiv() {
 	`);
 }
 
-
-for (let i = 0; i < removeTasks.length; i++) {
-	i.addEventListener('click', () => {
-		let removeItem = i.closest('.task');
-		console.log(i);
-		removeItem.remove();
-	});
-}
+taskList.addEventListener("click", (e) => {
+	let target = e.target;
+	if (target.classList.contains("task__remove")) {
+		e.preventDefault();
+		e.target.closest(".task").remove();
+	}
+});
