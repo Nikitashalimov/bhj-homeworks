@@ -10,15 +10,17 @@ button.addEventListener('click', (e) => {
 });
 
 function addDiv() {
-	taskList.innerHTML += `
+	taskList.insertAdjacentHTML('beforeend',
+		`
 	<div class="task">
 		<div class="task__title">
 			${input.value}
 		</div>
 		<a href="#" class="task__remove">&times;</a>
 	</div>
-	`;
+	`);
 }
+
 
 for (let i = 0; i < removeTasks.length; i++) {
 	i.addEventListener('click', () => {
