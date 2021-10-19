@@ -1,5 +1,6 @@
 const products = document.querySelectorAll('.product'); // основной блок
 const shoppingCart = document.querySelector('.cart__products'); // корзина
+const cartProducts = shoppingCart.getElementsByClassName('cart__product');
 
 products.forEach(item => {
 	const lotMinus = item.querySelector('.product__quantity-control_dec'); // минус
@@ -21,7 +22,6 @@ products.forEach(item => {
 	buy.addEventListener('click', () => {
 		const image = item.querySelector('img');
 		const index = item.getAttribute('data-id');
-		const cartProducts = shoppingCart.querySelectorAll('.cart__product');
 		//при покупке ищем такой же елемент в корзине
 		let product = Array.from(cartProducts).find(i => {
 			if (i.getAttribute('data-id') == index) {

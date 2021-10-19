@@ -4,7 +4,9 @@ const taskList = document.querySelector('.tasks__list');
 
 button.addEventListener('click', (e) => {
 	e.preventDefault();
-	addDiv();
+	if (input.value.trim()) {
+		addDiv();
+	}
 	input.value = '';
 });
 
