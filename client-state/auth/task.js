@@ -24,6 +24,7 @@ function sendRequest() {
 				signin.classList.remove("signin_active");
 				user.textContent = response["user_id"];
 				welcome.classList.add("welcome_active");
+				localStorage.setItem("welcome_active", response["user_id"]);
 			}
 			else {
 				signin.classList.remove("signin_active");
@@ -34,3 +35,11 @@ function sendRequest() {
 	}
 }
 
+window.onload = () => {
+	const open = localStorage.getItem("welcome_active");
+	if (open) {
+		signin.classList.remove("signin_active");
+		user.textContent = open;
+		welcome.classList.add("welcome_active");
+	}
+}
