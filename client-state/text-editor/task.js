@@ -1,7 +1,7 @@
 const textArea = document.getElementById('editor');
 
 // перед перезагрузкой страницы сохраняем текст в 
-window.unload = () => {
+window.onunload = () => {
 	localStorage.setItem('textSave', textArea.value);
 }
 
